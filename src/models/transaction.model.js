@@ -1,0 +1,18 @@
+import mongoose from 'mongoose';
+
+const TransactionSchema = new mongoose.Schema({
+    titulo: { type: String, required: true },
+    valor: { type: Number, required: true },
+    tipo: { type: String, required: true, enum: ['receita', 'despesa'] },
+    data: { type: Date, default: Date.now },
+    
+    // RELACIONAMENTO: Aqui dizemos que essa transação pertence a um Usuário específico
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
+        required: true 
+    }
+});
+
+const Transaction = mongoose.model('Transaction', TransactionSchema);
+export default Transaction;
