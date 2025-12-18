@@ -10,7 +10,6 @@ export const authMiddleware = (req, res, next) => {
     const [, token] = authHeader.split(" ");
 
     try {
-        // AQUI MUDOU: Usa a variável de ambiente
         const secret = process.env.JWT_SECRET;
         
         const decoded = jwt.verify(token, secret);
